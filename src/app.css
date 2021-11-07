@@ -97,6 +97,7 @@ article {
   border: var(--primary-color) 0.1em solid;
   border-radius: 0.25em;
   padding: 0 1em 1em;
+  margin: 2em 0;
 
   > header {
     margin: 0 -1em;
@@ -115,6 +116,7 @@ button.primary {
 button.secondary {
   @mixin secondary-pallette;
 }
-button.secondary {
-  color: 
+button.danger {
+  color: var(--neutral-foreground);
+  background-color: #dc3545;
 }

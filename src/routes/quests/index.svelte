@@ -5,7 +5,20 @@
   }
 </style>
 <script>
-  // Get some tasks
+  import Quest from "$lib/Quest.svelte"
+
+  let quests = [
+    {
+      title: "Finish Quest MVP",
+      description: "This app you're looking at? Make it work",
+      completed: false,
+    },
+    {
+      title: "ENHANCE!",
+      description: "Add the cool extra stuff",
+      completed: false,
+    },
+  ]
 </script>
 <h2>My Quests</h2>
 <nav>
@@ -14,12 +27,9 @@
   </ul>
 </nav>
 <ul class="quest-list">
-  <li>
-    <article class="quest-summary">
-      <header>Finish Quest MVP</header>
-      <p>This app you're looking at?  Make it work</p>
-      <button type="button" class="primary">Complete</button>
-      <button type="button" class="error">Abandon</button>
-    </article>
-  </li>
+  {#each quests as quest}
+    <li>
+      <Quest bind:value={quest} />
+    </li>
+  {/each}
 </ul>
