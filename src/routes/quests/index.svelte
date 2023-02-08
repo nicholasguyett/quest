@@ -4,32 +4,42 @@
     list-style: none;
   }
 </style>
-<script>
-  import Quest from "$lib/Quest.svelte"
 
-  let quests = [
-    {
-      title: "Finish Quest MVP",
-      description: "This app you're looking at? Make it work",
-      completed: false,
-    },
-    {
-      title: "ENHANCE!",
-      description: "Add the cool extra stuff",
-      completed: false,
-    },
-  ]
+<script>
+  import { liveQuery } from "dexie";
+  import { db } from "$lib/db"
+  import QuestSummary from "$lib/QuestSummary.svelte"
+  import QuestForm from "$lib/QuestForm.svelte"
+  import { Quest } from "$lib/quest"
+
+  let quests = liveQuery(
+    async () => db.quests.filter(quest => !quest.is_completed)
+  );
+
+  let updatedQuest = null;
+
+  function createNewQuest() {
+    updatedQuest = new Quest();
+  }
 </script>
+
 <h2>My Quests</h2>
 <nav>
   <ul>
-    <li><button type="button" class="primary">Start New Quest!</button></li>
+    <li>
+      <button type="button" class="primary" on:click={createNewQuest}>Start New Quest!</button>
+    </li>
   </ul>
 </nav>
 <ul class="quest-list">
-  {#each quests as quest}
+  {#each $quests as quest (quest.id)}
     <li>
-      <Quest bind:value={quest} />
+      <QuestSummary bind:value={quest} />
     </li>
   {/each}
 </ul>
+{#if updatedQuest !== null}
+  <modal open>
+    <QuestForm value={updatedQuest} on:save={() => updatedQuest = null}/>
+  </modal>
+{/if}
