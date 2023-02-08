@@ -1,137 +1,144 @@
 /* Write your global styles here, in PostCSS syntax */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
 
 :root {
-  --neutral-light-color: #eeeeee;
-  --neutral-dark-color: #444444;
-  --primary-color-hue: 270;
-  --primary-color-satuation: 100%;
-  --primary-color-lightness: 60%;
-  --primary-color: hsl(
-    var(--primary-color-hue),
-    var(--primary-color-satuation),
-    var(--primary-color-lightness)
-  );
-  --complement-color: hsl(
-    calc(var(--primary-color-hue)),
-    calc(var(--primary-color-satuation)),
-    var(--primary-color-lightness)
-  );
+	--neutral-light-color: #eeeeee;
+	--neutral-dark-color: #444444;
+	--primary-color-hue: 270;
+	--primary-color-satuation: 100%;
+	--primary-color-lightness: 60%;
+	--primary-color: hsl(
+		var(--primary-color-hue),
+		var(--primary-color-satuation),
+		var(--primary-color-lightness)
+	);
+	--complement-color: hsl(
+		calc(var(--primary-color-hue)),
+		calc(var(--primary-color-satuation)),
+		var(--primary-color-lightness)
+	);
 
-  color: var(--neutral-foreground);
-  background-color: var(--neutral-background);
+	color: var(--neutral-foreground);
+	background-color: var(--neutral-background);
 }
 
 @media (prefers-color-scheme: light) {
-  :root {
-    --neutral-foreground: var(--neutral-dark-color);
-    --neutral-background: var(--neutral-light-color);
-  }
+	:root {
+		--neutral-foreground: var(--neutral-dark-color);
+		--neutral-background: var(--neutral-light-color);
+	}
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --neutral-foreground: var(--neutral-light-color);
-    --neutral-background: var(--neutral-dark-color);
-  }
+	:root {
+		--neutral-foreground: var(--neutral-light-color);
+		--neutral-background: var(--neutral-dark-color);
+	}
 }
 
 @define-mixin neutral-pallette {
-  color: var(--neutral-foreground);
-  background-color: var(--neutral-background);
+	color: var(--neutral-foreground);
+	background-color: var(--neutral-background);
 }
 @define-mixin primary-pallette {
-  color: var(--neutral-light-color);
-  background-color: var(--primary-color);
+	color: var(--neutral-light-color);
+	background-color: var(--primary-color);
 }
 @define-mixin secondary-pallette {
-  color: var(--neutral-dark-color);
-  background-color: var(--complement-color);
+	color: var(--neutral-dark-color);
+	background-color: var(--complement-color);
 }
 
 a {
-  color: var(--link-color);
+	color: var(--link-color);
 }
-a, button {
-  &:hover,
-  &:focus {
-    filter: brightness(125%);
-  }
-  &:active {
-    filter: brightness(80%);
-  }
+a,
+button {
+	&:hover,
+	&:focus {
+		filter: brightness(125%);
+	}
+	&:active {
+		filter: brightness(80%);
+	}
 }
 a:visited {
-  filter: brightness(60%);
+	filter: brightness(60%);
 }
 
 nav > ul {
-  padding: 0;
-  list-style: none;
+	padding: 0;
+	list-style: none;
 
-  > li {
-    display: inline-block;
-  }
+	> li {
+		display: inline-block;
+	}
 }
-
 
 header,
 main,
 footer {
-  padding: 0 1em;
-  overflow: auto;
+	padding: 0 1em;
+	overflow: auto;
 
-  .brand {
-    display: inline-block;
-    vertical-align: middle;
+	.brand {
+		display: inline-block;
+		vertical-align: middle;
 
-    & + nav {
-      vertical-align: middle;
-      margin-left: 1em;
-      padding-left: 1em;
-      border-left: 0.1em solid var(--neutral-light-color);
-      display: inline-block;
-    }
-  }
+		& + nav {
+			vertical-align: middle;
+			margin-left: 1em;
+			padding-left: 1em;
+			border-left: 0.1em solid var(--neutral-light-color);
+			display: inline-block;
+		}
+	}
 }
 
-header, footer {
-  @mixin primary-pallette;
+header,
+footer {
+	@mixin primary-pallette;
 }
 
 #app-footer {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
 }
 
 article {
-  border: var(--primary-color) 0.1em solid;
-  border-radius: 0.25em;
-  padding: 0 1em 1em;
-  margin: 2em 0;
+	border: var(--primary-color) 0.1em solid;
+	border-radius: 0.25em;
+	padding: 0 1em 1em;
+	margin: 2em 0;
 
-  > header {
-    margin: 0 -1em;
-    padding: .75em 1em;
-  }
+	> header {
+		margin: 0 -1em;
+		padding: 0.75em 1em;
+	}
 }
 
 button {
-  border-radius: 0.25em;
-  border: var(--neutral-foreground) 0.1em solid;
-  padding: 0.5em;
-  @mixin neutral-pallette;
+	border-radius: 0.25em;
+	border: var(--neutral-foreground) 0.1em solid;
+	padding: 0.5em;
+	@mixin neutral-pallette;
 }
 button.primary {
-  @mixin primary-pallette;
+	@mixin primary-pallette;
 }
 button.secondary {
-  @mixin secondary-pallette;
+	@mixin secondary-pallette;
 }
 button.danger {
-  color: var(--neutral-foreground);
-  background-color: #dc3545;
+	color: var(--neutral-foreground);
+	background-color: #dc3545;
 }
