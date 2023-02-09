@@ -1,5 +1,5 @@
 <script>
-	// import { db } from "$lib/db"
+	import { db } from "$lib/db"
 	import { Quest } from '$lib/quest';
 
 	export let value;
@@ -7,16 +7,16 @@
 	let updatedValue = new Quest(value);
 
 	function save() {
-		// db.quests.add(updatedValue, updatedValue.id || undefined);
+		db.quests.put(updatedValue);
 	}
 </script>
 
 <form on:submit|preventDefault={save}>
 	<label>
-		Title: <input value={updatedValue.title} />
+		Title: <input bind:value={updatedValue.title} required />
 	</label>
 	<label>
-		Description: <input value={updatedValue.description} />
+		Description: <input bind:value={updatedValue.description} required />
 	</label>
 	<button class="primary" type="submit">Save</button>
 </form>

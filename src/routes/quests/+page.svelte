@@ -1,13 +1,18 @@
-<script>
+<script lang="ts">
 	import { liveQuery } from 'dexie';
 	import { db } from '$lib/db';
 	import QuestSummary from '$lib/QuestSummary.svelte';
 	import QuestForm from '$lib/QuestForm.svelte';
 	import { Quest } from '$lib/quest';
+	import type { Readable } from 'svelte/store';
+	import { browser } from '$app/environment';
 
-	let quests = liveQuery(async () => db.quests.filter((quest) => !quest.is_completed));
+	let quests = liveQuery(async() =>
+    browser ? db.quests.where({is_completed: false}).toArray()
+    : []
+  ) as unknown as Readable<Quest[]>
 
-	let updatedQuest = null;
+	let updatedQuest: Quest | null = null;
 
 	function createNewQuest() {
 		updatedQuest = new Quest();
@@ -23,11 +28,15 @@
 	</ul>
 </nav>
 <ul class="quest-list">
-	{#each $quests as quest (quest.id)}
-		<li>
-			<QuestSummary bind:value={quest} />
-		</li>
-	{/each}
+  {#if $quests && $quests.length > 0}
+    {#each $quests as quest (quest.id)}
+      <li>
+        <QuestSummary value={quest} />
+      </li>
+    {/each}
+  {:else}
+      No pending quests
+  {/if}
 </ul>
 {#if updatedQuest !== null}
 	<modal open>
