@@ -1,22 +1,13 @@
-# create-svelte
+# Quest Planner
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+Application is in-development and not ready for production use
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+A personal task-management system with an RPG theme and specific support for
+ADHD-related difficulties.
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Starting a development server:
 
 ```bash
 npm run dev
@@ -27,7 +18,7 @@ npm run dev -- --open
 
 ## Building
 
-To create a production version of your app:
+To create a production build:
 
 ```bash
 npm run build
@@ -35,4 +26,48 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+## TODO
+
+- Administration
+  - [ ] Create design doc / tech spec
+  - [ ] Create documentation
+- Core functionality
+  - [x] Allow user to create new quests
+  - [x] Allow user to mark quests as complete
+  - [ ] Add confirmation modal for completing quests
+  - [ ] Add personal setting to complet button
+  - [ ] Allow user to unmark quests as completed
+  - [x] Allow user to abandon(delete) quests
+  - [ ] Add confirmation modal to delete button
+  - [ ] Allow user to view completed quests
+  - [ ] Allow offline-mode / "install" functionality
+  - [ ] Localization support
+- Misc
+  - [ ] Enable quest categories ("Main Quest" and "Side Quest")
+- Sub-quests
+  - Allow quests to be created inside a parent quest
+  - Allow subquests to marked as optional or required
+  - Prevent parent quest from completing if required subquests are in-complete
+  - Allow parent quests to auto-complete when sub-quests complete
+- "Persistent Notifications"
+  - [ ] Add deadlines
+  - [ ] Add notification support
+  - [ ] Configurable reminder times
+  - [ ] Repeatable reminders
+  - [ ] Stubborn reminders
+- Quest Rewards
+  - [ ] Free-text reward descriptions
+  - [ ] Tracked rewards as "resources"
+  - [ ] Allow rewarded resources to be used as conditions for completing quests
+- Quest Chains
+  - [ ] Repeatable-quests
+    - [ ] Reschedule-on-completion
+    - [ ] Repeat per time-unit
+  - [ ] Direct follow-up quests
+- Hosted/shared quests
+  - [ ] Allow user-defined sync servers
+  - [ ] Enable hosted accounts with data sync
+  - [ ] Allow quests to be recorded in a remote server
+  - [ ] Allow read-only sharing of quests
+  - [ ] Allow other users to be assigned to a quest
+  - [ ] Allow group-quests (needs more design)
