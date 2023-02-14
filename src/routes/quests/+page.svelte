@@ -7,10 +7,9 @@
 	import type { Readable } from 'svelte/store';
 	import { browser } from '$app/environment';
 
-	let quests = liveQuery(async() =>
-    browser ? db.quests.where({is_completed: false}).toArray()
-    : []
-  ) as unknown as Readable<Quest[]>
+	let pendingQuests = liveQuery(async () =>
+		browser ? db.quests.filter((quest) => !quest.is_completed).toArray() : []
+	) as unknown as Readable<Quest[]>;
 
 	let updatedQuest: Quest | null = null;
 
@@ -28,15 +27,19 @@
 	</ul>
 </nav>
 <ul class="quest-list">
-  {#if $quests && $quests.length > 0}
-    {#each $quests as quest (quest.id)}
-      <li>
-        <QuestSummary value={quest} />
-      </li>
-    {/each}
-  {:else}
-      No pending quests
-  {/if}
+	{#if $pendingQuests}
+		{#if $pendingQuests.length > 0}
+			{#each $pendingQuests as quest (quest.id)}
+				<li>
+					<QuestSummary value={quest} />
+				</li>
+			{/each}
+		{:else}
+			No pending quests
+		{/if}
+	{:else}
+		<span>Loading...</span>
+	{/if}
 </ul>
 {#if updatedQuest !== null}
 	<modal open>
