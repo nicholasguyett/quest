@@ -3,7 +3,6 @@
 	import type { Quest } from "./quest";
 
 	export let value: Quest;
-  console.log(value)
 
   function completeQuest() {
     db.quests.put({...value, is_completed: true});
