@@ -42,9 +42,9 @@
 	{/if}
 </ul>
 {#if updatedQuest !== null}
-	<modal open>
-		<QuestForm value={updatedQuest} on:save={() => (updatedQuest = null)} />
-	</modal>
+	<dialog open>
+		<QuestForm value={updatedQuest} on:close={() => (updatedQuest = null)} />
+	</dialog>
 {/if}
 
 <style>
