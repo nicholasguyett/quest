@@ -22,16 +22,29 @@
 </script>
 
 <form on:submit|preventDefault={save}>
-	<label class="form-row">
-		<span>{$t('quests.fields.title')}:</span>
-		<input name="title" bind:value={updatedValue.title} required />
-	</label>
-	<label class="form-row">
-		<span>{$t('quests.fields.description')}:</span>
-		<textarea name="description" bind:value={updatedValue.description} required />
-	</label>
-	<div>
-		<button class="primary" type="submit">{$t('quests.cta.save')}</button>
-		<button class="danger" type="button" on:click={close}>{$t('quests.cta.close')}</button>
+	<div class="mb-3">
+		<label class="form-label" for="quest-form-title">{$t('quests.fields.title')}</label>
+		<input
+			name="title"
+			id="quest-form-title"
+			class="form-control"
+			bind:value={updatedValue.title}
+			required
+		/>
+	</div>
+
+	<div class="mb-3">
+		<label class="form-row" for="quest-form-description">{$t('quests.fields.description')}</label>
+		<textarea
+			name="description"
+			id="quest-form-description"
+			class="form-control"
+			bind:value={updatedValue.description}
+			required
+		/>
+	</div>
+	<div class="mb-3">
+		<button class="btn btn-primary" type="submit">{$t('quests.cta.save')}</button>
+		<button class="btn btn-danger" type="button" on:click={close}>{$t('quests.cta.close')}</button>
 	</div>
 </form>

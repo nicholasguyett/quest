@@ -14,11 +14,19 @@
 	}
 </script>
 
-<article class="quest-summary">
-	<header>{value.title}</header>
-	<p>{value.description}</p>
-	{#if !value.is_completed}
-		<button type="button" class="primary" on:click={completeQuest}>{$t('quests.cta.complete')}</button>
-		<button type="button" class="danger" on:click={abandonQuest}>{$t('quests.cta.abandon')}</button>
-	{/if}
+<article class="card">
+	<header class="card-header">{value.title}</header>
+	<div class="card-body">
+		<p class="card-text">{value.description}</p>
+	</div>
+	<div class="card-footer">
+		{#if !value.is_completed}
+			<button type="button" class="btn btn-primary" on:click={completeQuest}
+				>{$t('quests.cta.complete')}</button
+			>
+			<button type="button" class="btn btn-danger" on:click={abandonQuest}
+				>{$t('quests.cta.abandon')}</button
+			>
+		{/if}
+	</div>
 </article>

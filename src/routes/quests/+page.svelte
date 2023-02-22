@@ -20,13 +20,8 @@
 </script>
 
 <h2>My Quests</h2>
-<nav>
-	<ul>
-		<li>
-			<button type="button" class="primary" on:click={createNewQuest}>{$t('quests.cta.new-quest')}</button>
-		</li>
-	</ul>
-</nav>
+<button type="button" class="btn btn-primary" on:click={createNewQuest}>{$t('quests.cta.new-quest')}</button>
+
 <ul class="quest-list">
 	{#if $pendingQuests}
 		{#if $pendingQuests.length > 0}
@@ -43,7 +38,7 @@
 	{/if}
 </ul>
 {#if updatedQuest !== null}
-	<dialog open>
+	<dialog open={updatedQuest !== null} class="bg-body-secondary">
 		<QuestForm value={updatedQuest} on:close={() => (updatedQuest = null)} />
 	</dialog>
 {/if}
@@ -52,5 +47,6 @@
 	.quest-list {
 		padding: 0;
 		list-style: none;
+		margin-top: 3rem;
 	}
 </style>

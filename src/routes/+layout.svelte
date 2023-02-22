@@ -1,36 +1,30 @@
 <script lang="ts">
-	import '../app.css';
+	import '../app.scss';
 	import { t } from '$lib/translations';
 
 	let user = {
-		logged_in: true
+		logged_in: true,
+		use_light_mode: false
 	};
 </script>
 
-<header id="app-header">
-	<h1 class="brand">{$t('common.app-title')}</h1>
+<header class="navbar bg-primary navbar-expand">
+	<nav class="container" aria-label={$t('common.main-menu')}>
+		<a class="navbar-brand" href="/">{$t('common.app-title')}</a>
 
-	<nav>
-		<ul>
-			<li>
+		<ul class="navbar-nav">
+			<li class="nav-item">
+				<a class="nav-link" href="mailto:hello@questplanner.app">{$t('common.contact-us')}</a>
+			</li>
+			<li class="nav-item">
 				{#if user.logged_in}
-					<a href="/quests">{$t('common.dashboard-title')}</a>
+					<a class="nav-link" href="/quests">{$t('common.dashboard-title')}</a>
 				{/if}
 			</li>
 		</ul>
 	</nav>
 </header>
 
-<main id="app-main">
+<main class="container">
 	<slot />
 </main>
-
-<footer id="app-footer">
-	<nav>
-		<ul>
-			<li>
-				<a href="mailto:hello@questplanner.app">{$t('common.contact-us')}</a>
-			</li>
-		</ul>
-	</nav>
-</footer>
