@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
 	import '../app.css';
+	import { t } from '$lib/translations';
 
 	let user = {
 		logged_in: true
@@ -7,13 +8,13 @@
 </script>
 
 <header id="app-header">
-	<h1 class="brand">Quest Planner</h1>
+	<h1 class="brand">{$t('common.app-title')}</h1>
 
 	<nav>
 		<ul>
 			<li>
 				{#if user.logged_in}
-					<a href="/quests">My Quests</a>
+					<a href="/quests">{$t('common.dashboard-title')}</a>
 				{/if}
 			</li>
 		</ul>
@@ -28,7 +29,7 @@
 	<nav>
 		<ul>
 			<li>
-				<a href="mailto:hello@questplanner.app">Contact Us</a>
+				<a href="mailto:hello@questplanner.app">{$t('common.contact-us')}</a>
 			</li>
 		</ul>
 	</nav>
