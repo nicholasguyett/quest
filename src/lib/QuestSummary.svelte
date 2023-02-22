@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { db } from './db';
 	import type { Quest } from './quest';
+	import { t } from '$lib/translations';
 
 	export let value: Quest;
 
@@ -17,7 +18,7 @@
 	<header>{value.title}</header>
 	<p>{value.description}</p>
 	{#if !value.is_completed}
-		<button type="button" class="primary" on:click={completeQuest}>Complete</button>
-		<button type="button" class="danger" on:click={abandonQuest}>Abandon</button>
+		<button type="button" class="primary" on:click={completeQuest}>{$t('quests.cta.complete')}</button>
+		<button type="button" class="danger" on:click={abandonQuest}>{$t('quests.cta.abandon')}</button>
 	{/if}
 </article>

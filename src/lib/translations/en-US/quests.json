@@ -1,0 +1,13 @@
+{
+    "cta": {
+        "new-quest": "Start New Quest!",
+        "complete": "Complete",
+        "abandon": "Abandon",
+        "save": "Save",
+        "close": "Close"
+    },
+    "fields": {
+        "title": "Title",
+        "description": "Description"
+    }
+}
