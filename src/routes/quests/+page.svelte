@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { liveQuery } from 'dexie';
+	import { t } from '$lib/translations';
 	import { db } from '$lib/db';
 	import QuestSummary from '$lib/QuestSummary.svelte';
 	import QuestForm from '$lib/QuestForm.svelte';
@@ -22,7 +23,7 @@
 <nav>
 	<ul>
 		<li>
-			<button type="button" class="primary" on:click={createNewQuest}>Start New Quest!</button>
+			<button type="button" class="primary" on:click={createNewQuest}>{$t('quests.cta.new-quest')}</button>
 		</li>
 	</ul>
 </nav>
@@ -35,10 +36,10 @@
 				</li>
 			{/each}
 		{:else}
-			No pending quests
+			<span>{$t('quests.no-pending-quests')}</span>
 		{/if}
 	{:else}
-		<span>Loading...</span>
+		<span>{$t('common.loading')}</span>
 	{/if}
 </ul>
 {#if updatedQuest !== null}
