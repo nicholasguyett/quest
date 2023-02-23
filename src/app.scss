@@ -35,3 +35,9 @@ $color-mode-type: media-query;
 main {
 	margin: 1rem 0;
 }
+
+dialog {
+    color: inherit;
+    background-color: var(--bs-secondary-bg);
+    border-color: var(--bs-secondary-border-subtle);
+}

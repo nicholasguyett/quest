@@ -8,6 +8,8 @@
 	import type { Readable } from 'svelte/store';
 	import { browser } from '$app/environment';
 
+	let dialog: HTMLDialogElement;
+
 	let pendingQuests = liveQuery(async () =>
 		browser ? db.quests.filter((quest) => !quest.is_completed).toArray() : []
 	) as unknown as Readable<Quest[]>;
@@ -16,6 +18,7 @@
 
 	function createNewQuest() {
 		updatedQuest = new Quest();
+		dialog.showModal();
 	}
 </script>
 
@@ -37,11 +40,14 @@
 		<span>{$t('common.loading')}</span>
 	{/if}
 </ul>
-{#if updatedQuest !== null}
-	<dialog open={updatedQuest !== null} class="bg-body-secondary">
-		<QuestForm value={updatedQuest} on:close={() => (updatedQuest = null)} />
-	</dialog>
-{/if}
+
+<dialog bind:this={dialog}>
+	{#if updatedQuest !== null}
+	 	<div class="modal-content">
+			<QuestForm value={updatedQuest} on:close={() => (updatedQuest = null, dialog.close())} />
+		</div>
+	{/if}
+</dialog>
 
 <style>
 	.quest-list {
