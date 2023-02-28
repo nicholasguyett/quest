@@ -23,7 +23,9 @@
 </script>
 
 <h2>My Quests</h2>
-<button type="button" class="btn btn-primary" on:click={createNewQuest}>{$t('quests.cta.new-quest')}</button>
+<button type="button" class="btn btn-primary" on:click={createNewQuest}
+	>{$t('quests.cta.new-quest')}</button
+>
 
 <ul class="quest-list">
 	{#if $pendingQuests}
@@ -43,8 +45,8 @@
 
 <dialog bind:this={dialog}>
 	{#if updatedQuest !== null}
-	 	<div class="modal-content">
-			<QuestForm value={updatedQuest} on:close={() => (updatedQuest = null, dialog.close())} />
+		<div class="modal-content">
+			<QuestForm value={updatedQuest} on:close={() => ((updatedQuest = null), dialog.close())} />
 		</div>
 	{/if}
 </dialog>
