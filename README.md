@@ -34,11 +34,11 @@ You can preview the production build with `npm run preview`.
 - Core functionality
   - [x] Allow user to create new quests
   - [x] Allow user to mark quests as complete
-  - [ ] Add confirmation modal for completing quests
+  - [x] Add confirmation modal for completing quests
   - [ ] Add personal setting to complet button
   - [ ] Allow user to unmark quests as completed
   - [x] Allow user to abandon(delete) quests
-  - [ ] Add confirmation modal to delete button
+  - [x] Add confirmation modal to delete button
   - [ ] Allow user to view completed quests
   - [ ] Allow offline-mode / "install" functionality
   - [ ] Localization support
