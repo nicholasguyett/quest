@@ -1,7 +1,11 @@
 {
-    "app-title": "Quest Planner",
-    "dashboard-title": "My Quests",
-    "contact-us": "Contact Us",
-    "loading": "Loading...",
-	"main-menu": "Main"
+	"app-title": "Quest Planner",
+	"dashboard-title": "My Quests",
+	"contact-us": "Contact Us",
+	"loading": "Loading...",
+	"main-menu": "Main",
+	"btn-cancel": "Cancel",
+	"btn-confirm": "Confirm",
+	"confirm-abandon": "Are you sure you want to mark this quest abdandoned?",
+	"confirm-complete": "Are you sure you want to mark this quest completed?"
 }

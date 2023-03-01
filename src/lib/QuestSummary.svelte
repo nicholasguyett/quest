@@ -5,12 +5,28 @@
 
 	export let value: Quest;
 
+	let confirmationModal: HTMLDialogElement;
+	let confirmationTarget: 'complete' | 'abandon';
+
+	function confirm() {
+		switch (confirmationTarget) {
+			case 'complete':
+				db.quests.put({ ...value, is_completed: true });
+				break;
+			case 'abandon':
+				db.quests.delete(value.id);
+				break;
+		}
+	}
+
 	function completeQuest() {
-		db.quests.put({ ...value, is_completed: true });
+		confirmationTarget = 'complete';
+		confirmationModal.showModal();
 	}
 
 	function abandonQuest() {
-		db.quests.delete(value.id);
+		confirmationTarget = 'abandon';
+		confirmationModal.showModal();
 	}
 </script>
 
@@ -29,4 +45,14 @@
 			>
 		{/if}
 	</div>
+
+	<dialog bind:this={confirmationModal}>
+		<form method="dialog" on:submit={confirm}>
+			<p>{$t(`common.confirm-${confirmationTarget}`)}</p>
+			<button type="button" class="btn btn-danger" on:click={() => confirmationModal.close()}
+				>Cancel</button
+			>
+			<button type="submit" class="btn btn-primary">Confirm</button>
+		</form>
+	</dialog>
 </article>
