@@ -22,7 +22,11 @@
 	}
 </script>
 
-<h2>My Quests</h2>
+<svelte:head>
+	<title>{$t('quests.dashboard-title')}</title>
+</svelte:head>
+
+<h2>{$t('quests.dashboard-title')}</h2>
 <button type="button" class="btn btn-primary" on:click={createNewQuest}
 	>{$t('quests.cta.new-quest')}</button
 >
