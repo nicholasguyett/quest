@@ -1,6 +1,7 @@
 <script>
-	import { t } from "$lib/translations";
+	import { t } from '$lib/translations';
 </script>
+
 <svelte:head>
 	<title>{$t('common.app-title')}</title>
 </svelte:head>
