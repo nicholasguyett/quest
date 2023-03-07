@@ -1,5 +1,13 @@
-<h2>What is Quest Task Planner?</h2>
+<script>
+	import { t } from '$lib/translations';
+</script>
+
+<svelte:head>
+	<title>{$t('common.app-title')}</title>
+</svelte:head>
+
+<h2>{$t('home.header')}</h2>
 <p>
 	<!-- TODO Fill this out with a real description -->
-	Make task. See task. Do task.
+	{$t('home.description')}
 </p>

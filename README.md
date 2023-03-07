@@ -40,7 +40,7 @@ You can preview the production build with `npm run preview`.
   - [x] Allow user to abandon(delete) quests
   - [x] Add confirmation modal to delete button
   - [ ] Allow user to view completed quests
-  - [ ] Allow offline-mode / "install" functionality
+  - [x] Allow offline-mode / "install" functionality
   - [ ] Localization support
 - Misc
   - [ ] Enable quest categories ("Main Quest" and "Side Quest")
