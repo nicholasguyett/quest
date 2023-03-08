@@ -9,3 +9,6 @@ export const load = (async ({ url }) => {
 
 	return {};
 }) satisfies LayoutLoad;
+
+export const prerender = true;
+export const trailingSlash = 'always';
