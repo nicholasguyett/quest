@@ -9,16 +9,25 @@
 	import { browser } from '$app/environment';
 
 	let dialog: HTMLDialogElement;
+	let showCompleted: boolean = false;
 
-	let pendingQuests = liveQuery(async () =>
-		browser ? db.quests.filter((quest) => !quest.is_completed).toArray() : []
+	const allQuests = liveQuery(async () =>
+		browser ? db.quests.toArray() : []
 	) as unknown as Readable<Quest[]>;
+
+	$: pendingQuests = $allQuests?.filter((quest) => !quest.is_completed);
+
+	$: completedQuests = $allQuests?.filter((quest) => quest.is_completed);
 
 	let updatedQuest: Quest | null = null;
 
 	function createNewQuest() {
 		updatedQuest = new Quest();
 		dialog.showModal();
+	}
+
+	function toggleShowCompleted() {
+		showCompleted = !showCompleted;
 	}
 </script>
 
@@ -32,9 +41,9 @@
 >
 
 <ul class="quest-list">
-	{#if $pendingQuests}
-		{#if $pendingQuests.length > 0}
-			{#each $pendingQuests as quest (quest.id)}
+	{#if pendingQuests}
+		{#if pendingQuests.length > 0}
+			{#each pendingQuests as quest (quest.id)}
 				<li>
 					<QuestSummary value={quest} />
 				</li>
@@ -46,6 +55,21 @@
 		<span>{$t('common.loading')}</span>
 	{/if}
 </ul>
+
+{#if completedQuests?.length > 0}
+	<button type="button" class="btn btn-info" on:click={toggleShowCompleted}>
+		{showCompleted ? $t('quests.cta.hide-completed') : $t('quests.cta.show-completed')}
+	</button>
+	{#if showCompleted}
+		<ul class="quest-list">
+			{#each completedQuests as quest (quest.id)}
+				<li>
+					<QuestSummary value={quest} />
+				</li>
+			{/each}
+		</ul>
+	{/if}
+{/if}
 
 <dialog bind:this={dialog}>
 	{#if updatedQuest !== null}

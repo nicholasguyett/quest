@@ -6,7 +6,7 @@
 	export let value: Quest;
 
 	let confirmationModal: HTMLDialogElement;
-	let confirmationTarget: 'complete' | 'abandon';
+	let confirmationTarget: 'complete' | 'abandon' | 'uncomplete';
 
 	function confirm() {
 		switch (confirmationTarget) {
@@ -15,6 +15,9 @@
 				break;
 			case 'abandon':
 				db.quests.delete(value.id);
+				break;
+			case 'uncomplete':
+				db.quests.put({ ...value, is_completed: false });
 				break;
 		}
 	}
@@ -28,15 +31,24 @@
 		confirmationTarget = 'abandon';
 		confirmationModal.showModal();
 	}
+
+	function uncompleteQuest() {
+		confirmationTarget = 'uncomplete';
+		confirmationModal.showModal();
+	}
 </script>
 
-<article class="card">
+<article class="card quest-summary">
 	<header class="card-header">{value.title}</header>
 	<div class="card-body">
 		<p class="card-text">{value.description}</p>
 	</div>
 	<div class="card-footer">
-		{#if !value.is_completed}
+		{#if value.is_completed}
+			<button type="button" class="btn btn-danger" on:click={uncompleteQuest}>
+				{$t('quests.cta.uncomplete')}
+			</button>
+		{:else}
 			<button type="button" class="btn btn-primary" on:click={completeQuest}
 				>{$t('quests.cta.complete')}</button
 			>

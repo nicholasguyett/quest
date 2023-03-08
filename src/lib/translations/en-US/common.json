@@ -7,5 +7,6 @@
 	"btn-cancel": "Cancel",
 	"btn-confirm": "Confirm",
 	"confirm-abandon": "Are you sure you want to mark this quest abdandoned?",
-	"confirm-complete": "Are you sure you want to mark this quest completed?"
+	"confirm-complete": "Are you sure you want to mark this quest completed?",
+	"confirm-uncomplete": "Are you sure you want to mark this quest incomplete?"
 }
