@@ -16,6 +16,23 @@ yarn dev
 yarn dev -- --open
 ```
 
+## Storybook and Tests
+
+To run the storybook server:
+
+```bash
+yarn storybook
+
+```
+
+To run unit tests:
+```bash
+yarn test:unit
+```
+
+(Note: project is currently dependent on storybook and manual testing, so no real
+unit tests have been written yet)
+
 ## Building
 
 To create a production build:
