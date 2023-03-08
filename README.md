@@ -10,10 +10,10 @@ ADHD-related difficulties.
 Starting a development server:
 
 ```bash
-npm run dev
+yarn dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+yarn dev -- --open
 ```
 
 ## Building
@@ -21,10 +21,10 @@ npm run dev -- --open
 To create a production build:
 
 ```bash
-npm run build
+yarn build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `yarn preview`.
 
 ## TODO
 
