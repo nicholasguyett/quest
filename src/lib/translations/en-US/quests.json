@@ -4,7 +4,7 @@
 		"new-quest": "Start New Quest!",
 		"complete": "Complete",
 		"uncomplete": "Mark incomplete",
-		"abandon": "Abandon",
+		"delete": "Delete",
 		"save": "Save",
 		"close": "Close",
 		"show-completed": "Show completed quests",

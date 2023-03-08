@@ -6,14 +6,14 @@
 	export let value: Quest;
 
 	let confirmationModal: HTMLDialogElement;
-	let confirmationTarget: 'complete' | 'abandon' | 'uncomplete';
+	let confirmationTarget: 'complete' | 'delete' | 'uncomplete';
 
 	function confirm() {
 		switch (confirmationTarget) {
 			case 'complete':
 				db.quests.put({ ...value, is_completed: true });
 				break;
-			case 'abandon':
+			case 'delete':
 				db.quests.delete(value.id);
 				break;
 			case 'uncomplete':
@@ -27,8 +27,8 @@
 		confirmationModal.showModal();
 	}
 
-	function abandonQuest() {
-		confirmationTarget = 'abandon';
+	function deleteQuest() {
+		confirmationTarget = 'delete';
 		confirmationModal.showModal();
 	}
 
@@ -52,10 +52,10 @@
 			<button type="button" class="btn btn-primary" on:click={completeQuest}>
 				{$t('quests.cta.complete')}
 			</button>
-			<button type="button" class="btn btn-danger" on:click={abandonQuest}>
-				{$t('quests.cta.abandon')}
-			</button>
 		{/if}
+		<button type="button" class="btn btn-danger" on:click={deleteQuest}>
+			{$t('quests.cta.delete')}
+		</button>
 	</div>
 
 	<dialog bind:this={confirmationModal}>
