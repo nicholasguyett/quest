@@ -49,21 +49,21 @@
 				{$t('quests.cta.uncomplete')}
 			</button>
 		{:else}
-			<button type="button" class="btn btn-primary" on:click={completeQuest}
-				>{$t('quests.cta.complete')}</button
-			>
-			<button type="button" class="btn btn-danger" on:click={abandonQuest}
-				>{$t('quests.cta.abandon')}</button
-			>
+			<button type="button" class="btn btn-primary" on:click={completeQuest}>
+				{$t('quests.cta.complete')}
+			</button>
+			<button type="button" class="btn btn-danger" on:click={abandonQuest}>
+				{$t('quests.cta.abandon')}
+			</button>
 		{/if}
 	</div>
 
 	<dialog bind:this={confirmationModal}>
 		<form method="dialog" on:submit={confirm}>
 			<p>{$t(`common.confirm-${confirmationTarget}`)}</p>
-			<button type="button" class="btn btn-danger" on:click={() => confirmationModal.close()}
-				>Cancel</button
-			>
+			<button type="button" class="btn btn-danger" on:click={() => confirmationModal.close()}>
+				Cancel
+			</button>
 			<button type="submit" class="btn btn-primary">Confirm</button>
 		</form>
 	</dialog>
