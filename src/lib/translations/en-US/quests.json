@@ -3,9 +3,12 @@
 	"cta": {
 		"new-quest": "Start New Quest!",
 		"complete": "Complete",
-		"abandon": "Abandon",
+		"uncomplete": "Mark incomplete",
+		"delete": "Delete",
 		"save": "Save",
-		"close": "Close"
+		"close": "Close",
+		"show-completed": "Show completed quests",
+		"hide-completed": "Hide completed quests"
 	},
 	"fields": {
 		"title": "Title",
