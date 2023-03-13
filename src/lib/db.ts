@@ -10,7 +10,7 @@ class QuestDb extends Dexie {
 		this.version(1).stores({
 			quests: '++id, is_completed'
 		});
-		this.quests.mapToClass(Quest);
+		this.quests.hook('reading', quest => new Quest(quest));
 	}
 }
 
