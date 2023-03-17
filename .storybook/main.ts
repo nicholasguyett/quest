@@ -4,6 +4,7 @@ const config: StorybookConfig = {
 	addons: [
 		'@storybook/addon-links',
 		'@storybook/addon-essentials',
+		'@storybook/addon-i18next',
 		'@storybook/addon-interactions'
 	],
 	framework: {
@@ -12,6 +13,7 @@ const config: StorybookConfig = {
 	},
 	docs: {
 		autodocs: 'tag'
-	}
+	},
+	staticDirs: ['../static']
 };
 export default config;

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { db } from './db';
 	import type { Quest } from './quest';
-	import { t } from '$lib/translations';
+	import { i18n } from '$lib/translations';
 
 	export let value: Quest;
 
@@ -46,21 +46,21 @@
 	<div class="card-footer">
 		{#if value.is_completed}
 			<button type="button" class="btn btn-danger" on:click={uncompleteQuest}>
-				{$t('quests.cta.uncomplete')}
+				{$i18n.t('quests.cta.uncomplete')}
 			</button>
 		{:else}
 			<button type="button" class="btn btn-primary" on:click={completeQuest}>
-				{$t('quests.cta.complete')}
+				{$i18n.t('quests.cta.complete')}
 			</button>
 		{/if}
 		<button type="button" class="btn btn-danger" on:click={deleteQuest}>
-			{$t('quests.cta.delete')}
+			{$i18n.t('quests.cta.delete')}
 		</button>
 	</div>
 
 	<dialog bind:this={confirmationModal}>
 		<form method="dialog" on:submit={confirm}>
-			<p>{$t(`common.confirm-${confirmationTarget}`)}</p>
+			<p>{$i18n.t(`common.confirm-${confirmationTarget}`)}</p>
 			<button type="button" class="btn btn-danger" on:click={() => confirmationModal.close()}>
 				Cancel
 			</button>

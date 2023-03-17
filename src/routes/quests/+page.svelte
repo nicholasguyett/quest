@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { liveQuery } from 'dexie';
-	import { t } from '$lib/translations';
+	import { i18n } from '$lib/translations';
 	import { db } from '$lib/db';
 	import QuestSummary from '$lib/QuestSummary.svelte';
 	import QuestForm from '$lib/QuestForm.svelte';
@@ -32,12 +32,12 @@
 </script>
 
 <svelte:head>
-	<title>{$t('quests.dashboard-title')}</title>
+	<title>{$i18n.t('quests.dashboard-title')}</title>
 </svelte:head>
 
-<h2>{$t('quests.dashboard-title')}</h2>
+<h2>{$i18n.t('quests.dashboard-title')}</h2>
 <button type="button" class="btn btn-primary" on:click={createNewQuest}>
-	{$t('quests.cta.new-quest')}
+	{$i18n.t('quests.cta.new-quest')}
 </button>
 
 <ul class="quest-list">
@@ -49,16 +49,16 @@
 				</li>
 			{/each}
 		{:else}
-			<span>{$t('quests.no-pending-quests')}</span>
+			<span>{$i18n.t('quests.no-pending-quests')}</span>
 		{/if}
 	{:else}
-		<span>{$t('common.loading')}</span>
+		<span>{$i18n.t('common.loading')}</span>
 	{/if}
 </ul>
 
 {#if completedQuests?.length > 0}
 	<button type="button" class="btn btn-info" on:click={toggleShowCompleted}>
-		{showCompleted ? $t('quests.cta.hide-completed') : $t('quests.cta.show-completed')}
+		{showCompleted ? $i18n.t('quests.cta.hide-completed') : $i18n.t('quests.cta.show-completed')}
 	</button>
 	{#if showCompleted}
 		<ul class="quest-list">

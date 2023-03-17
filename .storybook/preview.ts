@@ -1,9 +1,12 @@
 import type { Preview } from '@storybook/svelte';
-import { loadTranslations } from '$lib/translations';
+import { i18next as i18n } from '$lib/translations';
 import '../src/app.scss';
 
 const preview: Preview = {
 	parameters: {
+		i18n,
+		locale: 'en',
+		locales: { en: 'English' },
 		actions: { argTypesRegex: '^on[A-Z].*' },
 		controls: {
 			matchers: {
@@ -13,33 +16,18 @@ const preview: Preview = {
 		},
 		layout: 'padded',
 	},
-	globals: {
-		loader: () => {}
-	}
-};
-
-const withTranslations = () => {
 };
 
 export const globalTypes = {
 	locale: {
 		name: 'Locale',
-		description: 'Interntionalization locale',
+		description: 'Internationalization locale',
 		defaultValue: 'en-US',
 		toolbar: {
 			icon: 'globe',
-			items: [
-				{ value: 'en-US', title: 'English' },
-			]
+			items: [{ value: 'en-US', title: 'English' }]
 		}
 	}
 };
 
 export default preview;
-export const loaders = [
-	// Load translations in all stories
-	async ({globals: {locale}}) => {
-		await loadTranslations(locale);
-		return {};
-	},
-]
