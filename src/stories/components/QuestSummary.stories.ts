@@ -10,13 +10,27 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
+const baseQuest = new Quest({
+	id: 1,
+	title: 'Do some cardio',
+	description: 'Run on the treadmill for at least 30 minutes',
+	is_completed: false
+});
+
+const now = new Date();
+const tomorrow = new Date(now.getTime() + 1000 * 60 * 60 * 24);
+
 export const Default: Story = {
 	args: {
+		value: baseQuest
+	}
+};
+
+export const WithDeadline: Story = {
+	args: {
 		value: new Quest({
-			id: 1,
-			title: 'Do some cardio',
-			description: 'Run on the treadmill for at least 30 minutes',
-			is_completed: false
+			...baseQuest,
+			target_completion_datetime: tomorrow
 		})
 	}
 };
