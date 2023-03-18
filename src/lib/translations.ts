@@ -14,11 +14,14 @@ export const DEFAULT_LOCALE = Locale.en;
 export type SupportedLocale = (typeof SUPPORTED_LOCALES)[number];
 export type Namespace = (typeof NAMESPACES)[number];
 
-export const GLOBAL_OPTIONS = {
+export const GLOBAL_OPTIONS: InitOptions = {
 	fallbackLng: [DEFAULT_LOCALE],
 	ns: NAMESPACES,
 	keySeparator: '.',
 	nsSeparator: '.',
+	interpolation: {
+		escapeValue: false // Escaping is already handled by svelte
+	}
 };
 let environmentSpecificOptions: Partial<InitOptions> = {};
 if (browser) {
