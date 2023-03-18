@@ -13,10 +13,12 @@
 	"fields": {
 		"title": "Title",
 		"description": "Description",
+		"target_completion_datetime": "Target Completion Date & Time"
 	},
 	"field-is-required": {
 		"expanded": "This field is required",
 		"abbreviation": "*"
 	},
+	"complete-by": "Should be completed by: {{val, datetime}}",
 	"no-pending-quests": "No pending quests"
 }

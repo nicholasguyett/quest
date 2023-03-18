@@ -54,6 +54,18 @@
 		/>
 	</div>
 	<div class="mb-3">
+		<label class="form-label" for="quest-form-target-completion-datetime">
+			{$i18n.t('quests.fields.target_completion_datetime')}
+		</label>
+		<input
+			type="datetime-local"
+			name="target-completion-datetime"
+			id="quest-form-target-completion-datetime"
+			class="form-control"
+			bind:value={updatedValue.target_completion_datetime}
+		/>
+	</div>
+	<div class="mb-3">
 		<button class="btn btn-primary" type="submit">{$i18n.t('quests.cta.save')}</button>
 		<button class="btn btn-danger" type="button" on:click={close}>
 			{$i18n.t('quests.cta.close')}
