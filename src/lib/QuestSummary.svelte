@@ -39,7 +39,20 @@
 </script>
 
 <article class="card quest-summary">
-	<header class="card-header">{value.title}</header>
+	<header class="card-header">
+		{value.title}
+		{#if value.target_completion_datetime}
+			&mdash;
+			<small>
+				{$i18n.t('quests.complete-by', {
+					val: value.target_completion_datetime,
+					formatParams: {
+						val: { dateStyle: 'short', timeStyle: 'short' }
+					}
+				})}
+			</small>
+		{/if}
+	</header>
 	<div class="card-body">
 		<p class="card-text">{value.description}</p>
 	</div>

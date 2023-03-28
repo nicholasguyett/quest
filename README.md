@@ -68,7 +68,7 @@ You can preview the production build with `yarn preview`.
   - Prevent parent quest from completing if required subquests are in-complete
   - Allow parent quests to auto-complete when sub-quests complete
 - "Persistent Notifications"
-  - [ ] Add deadlines
+  - [x] Add deadlines
   - [ ] Add notification support
   - [ ] Configurable reminder times
   - [ ] Repeatable reminders
