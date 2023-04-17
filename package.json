@@ -54,6 +54,7 @@
 		"dexie": "^3.2.3",
 		"i18next": "^22.4.11",
 		"i18next-fetch-backend": "^5.0.2",
+		"kolorist": "^1.7.0",
 		"locale-enum": "^1.1.1",
 		"rxjs": "^7.8.0",
 		"sass": "^1.58.3"
