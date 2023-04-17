@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { pwaInfo } from 'virtual:pwa-info';
-
 	import '../app.scss';
 	import { i18n } from '$lib/translations';
 
@@ -9,28 +6,7 @@
 		logged_in: true,
 		use_light_mode: false
 	};
-
-	onMount(async () => {
-		if (pwaInfo) {
-			const { registerSW } = await import('virtual:pwa-register');
-			registerSW({
-				immediate: true,
-				onRegistered(r: any) {
-					console.log(`SW Registered: ${r}`);
-				},
-				onRegisterError(error: any) {
-					console.error('SW registration error', error);
-				}
-			});
-		}
-	});
-
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
-
-<svelte:head>
-	{@html webManifest}
-</svelte:head>
 
 <header class="navbar bg-primary navbar-expand">
 	<nav class="container" aria-label={$i18n.t('common.main-menu')}>
