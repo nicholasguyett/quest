@@ -8,7 +8,8 @@
 		"save": "Save",
 		"close": "Close",
 		"show-completed": "Show completed quests",
-		"hide-completed": "Hide completed quests"
+		"hide-completed": "Hide completed quests",
+		"enable-notifications": "Enable notifications"
 	},
 	"fields": {
 		"title": "Title",
@@ -19,6 +20,6 @@
 		"expanded": "This field is required",
 		"abbreviation": "*"
 	},
-	"complete-by": "Should be completed by: {{val, datetime}}",
+	"complete-by": "Should be completed by: {{val}}",
 	"no-pending-quests": "No pending quests"
 }

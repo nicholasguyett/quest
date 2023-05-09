@@ -1,36 +1,32 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { pwaInfo } from 'virtual:pwa-info';
-
 	import '../app.scss';
 	import { i18n } from '$lib/translations';
+	import {
+		questReminderNotifications,
+		type QuestReminder,
+		notificationsEnabled
+	} from '$lib/reminders';
+	import { MESSAGE_TYPE } from '$lib/messages';
+	import { onDestroy } from 'svelte';
 
 	let user = {
 		logged_in: true,
 		use_light_mode: false
 	};
 
-	onMount(async () => {
-		if (pwaInfo) {
-			const { registerSW } = await import('virtual:pwa-register');
-			registerSW({
-				immediate: true,
-				onRegistered(r: any) {
-					console.log(`SW Registered: ${r}`);
-				},
-				onRegisterError(error: any) {
-					console.error('SW registration error', error);
-				}
-			});
-		}
-	});
+	function delegateNotification(questReminder: QuestReminder) {
+		navigator.serviceWorker.controller?.postMessage?.({
+			type: MESSAGE_TYPE.IDEMPOTENT_NOTIFICATION,
+			...questReminder
+		});
+	}
 
-	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
+	if ($notificationsEnabled) {
+		// Listen for quest reminders and delegate to service worker, to prevent duplicate notifications
+		const questReminderSubscription = questReminderNotifications.subscribe(delegateNotification);
+		onDestroy(() => questReminderSubscription.unsubscribe());
+	}
 </script>
-
-<svelte:head>
-	{@html webManifest}
-</svelte:head>
 
 <header class="navbar bg-primary navbar-expand">
 	<nav class="container" aria-label={$i18n.t('common.main-menu')}>

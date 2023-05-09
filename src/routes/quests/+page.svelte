@@ -7,6 +7,7 @@
 	import { Quest } from '$lib/quest';
 	import type { Readable } from 'svelte/store';
 	import { browser } from '$app/environment';
+	import { requestNotificationsPermissions, notificationsEnabled } from '$lib/reminders';
 
 	let dialog: HTMLDialogElement;
 	let showCompleted: boolean = false;
@@ -39,6 +40,11 @@
 <button type="button" class="btn btn-primary" on:click={createNewQuest}>
 	{$i18n.t('quests.cta.new-quest')}
 </button>
+{#if !$notificationsEnabled}
+	<button type="button" class="btn btn-info" on:click={requestNotificationsPermissions}>
+		{$i18n.t('quests.cta.enable-notifications')}
+	</button>
+{/if}
 
 <ul class="quest-list">
 	{#if pendingQuests}

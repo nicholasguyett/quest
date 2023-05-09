@@ -69,7 +69,7 @@ You can preview the production build with `yarn preview`.
   - Allow parent quests to auto-complete when sub-quests complete
 - "Persistent Notifications"
   - [x] Add deadlines
-  - [ ] Add notification support
+  - [x] Add notification support
   - [ ] Configurable reminder times
   - [ ] Repeatable reminders
   - [ ] Stubborn reminders

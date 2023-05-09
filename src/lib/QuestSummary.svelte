@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { db } from './db';
-	import type { Quest } from './quest';
+	import { Quest } from './quest';
 	import { i18n } from '$lib/translations';
 
 	export let value: Quest;
@@ -11,13 +11,13 @@
 	function confirm() {
 		switch (confirmationTarget) {
 			case 'complete':
-				db.quests.put({ ...value, is_completed: true });
+				db.quests.put(new Quest({ ...value, is_completed: true }));
 				break;
 			case 'delete':
 				db.quests.delete(value.id);
 				break;
 			case 'uncomplete':
-				db.quests.put({ ...value, is_completed: false });
+				db.quests.put(new Quest({ ...value, is_completed: false }));
 				break;
 		}
 	}
@@ -45,10 +45,10 @@
 			&mdash;
 			<small>
 				{$i18n.t('quests.complete-by', {
-					val: value.target_completion_datetime,
-					formatParams: {
-						val: { dateStyle: 'short', timeStyle: 'short' }
-					}
+					val: value.target_completion_datetime.toLocaleString($i18n.resolvedLanguage, {
+						dateStyle: 'full',
+						timeStyle: 'short'
+					})
 				})}
 			</small>
 		{/if}
