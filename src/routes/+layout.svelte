@@ -1,7 +1,11 @@
 <script lang="ts">
 	import '../app.scss';
 	import { i18n } from '$lib/translations';
-	import { questReminderNotifications, type QuestReminder } from '$lib/reminders';
+	import {
+		questReminderNotifications,
+		type QuestReminder,
+		notificationsEnabled
+	} from '$lib/reminders';
 	import { MESSAGE_TYPE } from '$lib/messages';
 	import { onDestroy } from 'svelte';
 
@@ -17,9 +21,11 @@
 		});
 	}
 
-	// Listen for quest reminders and delegate to service worker, to prevent duplicate notifications
-	const questReminderSubscription = questReminderNotifications.subscribe(delegateNotification);
-	onDestroy(() => questReminderSubscription.unsubscribe());
+	if ($notificationsEnabled) {
+		// Listen for quest reminders and delegate to service worker, to prevent duplicate notifications
+		const questReminderSubscription = questReminderNotifications.subscribe(delegateNotification);
+		onDestroy(() => questReminderSubscription.unsubscribe());
+	}
 </script>
 
 <header class="navbar bg-primary navbar-expand">

@@ -12,7 +12,8 @@ import {
 	mergeAll,
 	delay,
 	tap,
-	switchAll
+	switchAll,
+	fromEventPattern as ObservableFromEventPattern
 } from 'rxjs';
 import type { Quest } from './quest';
 import { browser } from '$app/environment';
@@ -35,6 +36,22 @@ export interface QuestReminder {
 export function requestNotificationsPermissions() {
 	return Notification.requestPermission();
 }
+
+/**
+ * Observable that tracks the current permission for Notifications
+ */
+export const notificationsEnabled = browser
+	? ObservableFrom(
+			navigator.permissions.query({ name: 'notifications' }).then((result) => {
+				// Permissions change event is only accesible through the result object
+				return ObservableFromEventPattern(
+					(handler) => result.addEventListener('change', handler),
+					(handler) => result.removeEventListener('change', handler),
+					() => result.state === 'granted' // result reference updates after change event
+				).pipe(startWith(result.state === 'granted'));
+			})
+	  ).pipe(mergeAll())
+	: ObservableOf(false);
 
 /**
  * Creates a live observable the emits a list of all quests in the database with a
