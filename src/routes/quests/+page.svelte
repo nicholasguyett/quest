@@ -7,6 +7,7 @@
 	import { Quest } from '$lib/quest';
 	import type { Readable } from 'svelte/store';
 	import { browser } from '$app/environment';
+	import { requestNotificationsPermissions } from '$lib/reminders';
 
 	let dialog: HTMLDialogElement;
 	let showCompleted: boolean = false;
@@ -38,6 +39,9 @@
 <h2>{$i18n.t('quests.dashboard-title')}</h2>
 <button type="button" class="btn btn-primary" on:click={createNewQuest}>
 	{$i18n.t('quests.cta.new-quest')}
+</button>
+<button type="button" class="btn btn-info" on:click={requestNotificationsPermissions}>
+	{$i18n.t('quests.cta.enable-notifications')}
 </button>
 
 <ul class="quest-list">
