@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/svelte';
-import { within, userEvent } from '@storybook/testing-library';
 
-import Dashboard from '$lib/../routes/quests/+page.svelte';
+import Dashboard from '$lib/../routes/+page.svelte';
 
 const meta = {
 	title: 'Pages/Dashboard',
