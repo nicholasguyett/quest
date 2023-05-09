@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { db } from './db';
-	import type { Quest } from './quest';
+	import { Quest } from './quest';
 	import { i18n } from '$lib/translations';
 
 	export let value: Quest;
@@ -11,13 +11,13 @@
 	function confirm() {
 		switch (confirmationTarget) {
 			case 'complete':
-				db.quests.put({ ...value, is_completed: true });
+				db.quests.put(new Quest({ ...value, is_completed: true }));
 				break;
 			case 'delete':
 				db.quests.delete(value.id);
 				break;
 			case 'uncomplete':
-				db.quests.put({ ...value, is_completed: false });
+				db.quests.put(new Quest({ ...value, is_completed: false }));
 				break;
 		}
 	}
