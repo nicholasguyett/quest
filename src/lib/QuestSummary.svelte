@@ -45,10 +45,10 @@
 			&mdash;
 			<small>
 				{$i18n.t('quests.complete-by', {
-					val: value.target_completion_datetime,
-					formatParams: {
-						val: { dateStyle: 'short', timeStyle: 'short' }
-					}
+					val: value.target_completion_datetime.toLocaleString($i18n.resolvedLanguage, {
+						dateStyle: 'full',
+						timeStyle: 'short'
+					})
 				})}
 			</small>
 		{/if}

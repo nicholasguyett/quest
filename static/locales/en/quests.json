@@ -19,6 +19,6 @@
 		"expanded": "This field is required",
 		"abbreviation": "*"
 	},
-	"complete-by": "Should be completed by: {{val, datetime}}",
+	"complete-by": "Should be completed by: {{val}}",
 	"no-pending-quests": "No pending quests"
 }

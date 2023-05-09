@@ -3,6 +3,7 @@
 	import { Quest } from '$lib/quest';
 	import { createEventDispatcher } from 'svelte';
 	import { i18n } from '$lib/translations';
+	import DateTimeInput from './DateTimeInput.svelte';
 
 	export let value: Quest;
 
@@ -57,8 +58,7 @@
 		<label class="form-label" for="quest-form-target-completion-datetime">
 			{$i18n.t('quests.fields.target_completion_datetime')}
 		</label>
-		<input
-			type="datetime-local"
+		<DateTimeInput
 			name="target-completion-datetime"
 			id="quest-form-target-completion-datetime"
 			class="form-control"

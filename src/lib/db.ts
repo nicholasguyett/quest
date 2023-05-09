@@ -7,8 +7,8 @@ class QuestDb extends Dexie {
 
 	public constructor() {
 		super('QuestPlannerDb');
-		this.version(1).stores({
-			quests: '++id, is_completed'
+		this.version(2).stores({
+			quests: '++id,is_completed,target_completion_datetime'
 		});
 		this.quests.hook('reading', quest => new Quest(quest));
 	}

@@ -1,9 +1,11 @@
+import { Temporal } from '@js-temporal/polyfill';
+
 export class Quest {
 	public id: any;
 	public title: string;
 	public description: string;
 	public is_completed: boolean;
-	public target_completion_datetime?: Date;
+	public target_completion_datetime?: Temporal.PlainDateTime;
 
 	public constructor(
 		{
@@ -17,7 +19,7 @@ export class Quest {
 			title: string;
 			description: string;
 			is_completed: boolean;
-			target_completion_datetime?: Date;
+			target_completion_datetime?: Temporal.PlainDateTime | string;
 		} = {
 			id: undefined,
 			title: '',
@@ -31,7 +33,7 @@ export class Quest {
 		this.description = description || '';
 		this.is_completed = is_completed || false;
 		if (target_completion_datetime) {
-			this.target_completion_datetime = new Date(target_completion_datetime);
+			this.target_completion_datetime = Temporal.PlainDateTime.from(target_completion_datetime);
 		}
 	}
 }
