@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { pwaInfo } from 'virtual:pwa-info';
+
 	import '../app.scss';
 	import { i18n } from '$lib/translations';
 	import {
@@ -21,7 +23,13 @@
 		const questReminderSubscription = questReminderNotifications.subscribe(delegateNotification);
 		onDestroy(() => questReminderSubscription.unsubscribe());
 	}
+
+	$: webManifest = pwaInfo ? pwaInfo.webManifest.linkTag : '';
 </script>
+
+<svelte:head>
+	{@html webManifest}
+</svelte:head>
 
 <header class="navbar bg-primary navbar-expand">
 	<nav class="container" aria-label={$i18n.t('common.main-menu')}>
