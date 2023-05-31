@@ -1,4 +1,3 @@
-import path from 'path';
 import i18next, { type InitOptions } from 'i18next';
 import { Locale } from 'locale-enum';
 import Fetch from 'i18next-fetch-backend';
