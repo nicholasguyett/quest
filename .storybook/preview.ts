@@ -14,8 +14,8 @@ const preview: Preview = {
 				date: /Date$/
 			}
 		},
-		layout: 'padded',
-	},
+		layout: 'padded'
+	}
 };
 
 export const globalTypes = {
