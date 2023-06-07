@@ -7,11 +7,8 @@ import {
 	of as ObservableOf,
 	from as ObservableFrom,
 	map,
-	mergeMap,
-	switchMap,
 	mergeAll,
 	delay,
-	tap,
 	switchAll,
 	fromEventPattern as ObservableFromEventPattern
 } from 'rxjs';
